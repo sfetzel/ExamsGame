@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { ExamService } from './app.exam.service';
+import { ExamService } from './exam.service';
 import { FormsModule } from '@angular/forms';
 import { MathJaxDirective } from './MathJaxDirective';
 import { AppRoutingModule } from './app-routing.module';
