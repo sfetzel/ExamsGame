@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable()
 export class HighscoreService
 {
-	public name:string;
+	public name:string="";
 	
 	constructor(private http: HttpClient)
 	{

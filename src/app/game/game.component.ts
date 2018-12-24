@@ -40,7 +40,11 @@ export class GameComponent implements OnInit
 	public isSolutionVisible=false;
 	private levels: ExamInstance[][] = [];
 	public score = 0;
+	
 	public isRewardShown:boolean = false;
+	public rewardsHtmlCode = "";
+	
+	private availableRewardsList:string[] = [];
 	
 	public examInstance:ExamInstance=
 		{
@@ -66,9 +70,15 @@ export class GameComponent implements OnInit
 	
 	getRandomExam():ExamInstance
 	{
-		var randomLevel = this.getRandomNumber(0, this.levels.length-1);
+		var randomLevel = this.getRandomNumber(0, this.levels.length);
 		var randomExam = this.getRandomNumber(0, this.levels[randomLevel].length);
 		return this.levels[randomLevel][randomExam];
+	}
+	
+	showReward()
+	{
+		this.isRewardShown = true;
+		this.rewardsHtmlCode = this.availableRewardsList[this.getRandomNumber(0, this.availableRewardsList.length)];
 	}
 	
 	setRandomExam()
@@ -144,9 +154,8 @@ export class GameComponent implements OnInit
 		else {
 			this.score += 1;
 			this.setRandomExam();
-			this.isRewardShown = true;
+			this.showReward();
 		}
-		console.log(this.isRewardShown);
 	}
 	
 	ngOnInit()
@@ -157,6 +166,9 @@ export class GameComponent implements OnInit
 				self.levels = [ level ];
 				self.setRandomExam();
 			});
+		this.examService.getRewardsList().subscribe(rewardsList => { 
+			self.availableRewardsList = rewardsList; 
+		});
 		this.levelCount = this.examService.getLevelCount();
 	}
 

@@ -6,3 +6,11 @@
 	height: 100%;
 	padding: 1em;
 }
+
+@media only screen and (max-width: 600px)
+{
+	.GameComponent
+	{
+		width: 100%;
+	}
+}

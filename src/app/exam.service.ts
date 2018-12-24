@@ -32,7 +32,9 @@ export interface ExamsJsonExport
 @Injectable()
 export class ExamService
 {
-	public levelsRelativeUrl = "assets/level{0}.json";
+	public assetsRelativeUrl = "assets/";
+	public rewardsRelativeUrl = this.assetsRelativeUrl + "rewards.json";
+	public levelsRelativeUrl = this.assetsRelativeUrl + "level{0}.json";
 	
 	// default count of levels
 	private levelCount = 1;
@@ -51,7 +53,11 @@ export class ExamService
 			new RegExp('\\{0\\}', 'gm'), level.toString());
 		return this.http.get<ExamsJsonExport>(relativeUrl).pipe(map(
 			(examsJsonExport:ExamsJsonExport) => examsJsonExport.exportData.questions));
-
+	}
+	
+	getRewardsList():Observable<string[]>
+	{
+		return this.http.get<string[]>(this.rewardsRelativeUrl);
 	}
 	
 	getLevelCount():number

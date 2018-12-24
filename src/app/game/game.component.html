@@ -28,9 +28,7 @@
 		</div>
 	</form>
 	<br />
-	<div [hidden]="!isRewardShown">
-		<img src="https://media.giphy.com/media/czHaRWgsGfQr5ih7n8/200w_d.gif" alt="" />
-	</div>
+	<div [hidden]="!isRewardShown" [innerHTML]="rewardsHtmlCode"></div>
 	<h2>Task</h2>
 	<div [hidden]="examInstance==null" >
 		<div [mathJax]="examInstance.question"></div>
@@ -51,7 +49,7 @@
 				class="form-control" placeholder="1234" aria-label="solution" aria-describedby="basic-solution">
 		</div>
 		<button [attr.disabled]="isSolutionVisible ? 'disabled' : null" (click)="checkExam(examInstance)"
-			class="btn btn-primary">Überprüfen</button>
+			class="btn btn-primary">Check</button>
 		<br />
 		<div [hidden]="!isSolutionVisible">
 			<div [mathJax]="examInstance.solution"></div>
@@ -61,7 +59,8 @@
 					<span [mathJax]="solution"></span>
 				</li>
 			</ul>
-			<button (click)="setRandomExam()">Neu starten!</button>
+			<button (click)="setRandomExam()">Restart</button>
 		</div>
 	</div>
+	<br style="clear: both" />
 </div>
