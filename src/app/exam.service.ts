@@ -33,7 +33,9 @@ export interface ExamsJsonExport
 export class ExamService
 {
 	public levelsRelativeUrl = "assets/level{0}.json";
-
+	
+	// default count of levels
+	private levelCount = 1;
 
 	constructor(private http: HttpClient)
 	{
@@ -50,6 +52,15 @@ export class ExamService
 		return this.http.get<ExamsJsonExport>(relativeUrl).pipe(map(
 			(examsJsonExport:ExamsJsonExport) => examsJsonExport.exportData.questions));
 
+	}
+	
+	getLevelCount():number
+	{
+		let levelCount = this.levelCount;
+		if(environment.hasOwnProperty("levelCount")){
+			levelCount = environment.levelCount;
+		}
+		return levelCount;
 	}
 }
 

@@ -1,0 +1,67 @@
+<div class="GameComponent">
+	<img src="assets/beautiful-royal-crown.png" style="width: 20%; float: right;" alt="" />
+	<h1>
+		exams king
+	</h1>
+	<br />
+	<form>
+		<div class="form-row align-items-center">
+			<div class="col-auto">
+				<label class="sr-only">Name</label>
+				<div class="form-control mb-2">
+					Name: {{this.highscoreService.name}}
+				</div>
+			</div>
+			<div class="col-auto">
+				<label  class="sr-only">Level: {{level}}/{{levelCount}}</label>
+				<div class="form-control mb-2">
+					Level {{level}}/{{levelCount}} <progress max="{{levelCount}}" value="{{level}}"></progress>
+				</div>
+			</div>
+			<div class="col-auto">
+				<label  class="sr-only">Points: {{score}}</label>
+				<div class="form-control mb-2">
+					Points: {{score}}
+					<progress max="{{necessaryPointsForNextLevel}}" value="{{score}}"></progress>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br />
+	<div [hidden]="!isRewardShown">
+		<img src="https://media.giphy.com/media/czHaRWgsGfQr5ih7n8/200w_d.gif" alt="" />
+	</div>
+	<h2>Task</h2>
+	<div [hidden]="examInstance==null" >
+		<div [mathJax]="examInstance.question"></div>
+		<ul [hidden]="examInstance.questionlist==null">
+		
+			<li *ngFor="let question of examInstance.questionlist; let i = index">
+				<input *ngIf="examInstance.metainfo.type=='mchoice'" 
+					type="checkbox" [(ngModel)]="solution[i]" />
+				<span [mathJax]="question"></span>
+			</li>
+		</ul>
+		<div class="input-group mb-3" *ngIf="examInstance != null && examInstance.metainfo.type == 'num'">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-solution">Your solution</span>
+			</div>
+			<input type="number" [(ngModel)]="solution" [attr.disabled]="isSolutionVisible ? 'disabled' : null" 
+				[@answerState]="isSolutionVisible ? 'incorrectAnswer' : 'noAnswer'"
+				class="form-control" placeholder="1234" aria-label="solution" aria-describedby="basic-solution">
+		</div>
+		<button [attr.disabled]="isSolutionVisible ? 'disabled' : null" (click)="checkExam(examInstance)"
+			class="btn btn-primary">Überprüfen</button>
+		<br />
+		<div [hidden]="!isSolutionVisible">
+			<div [mathJax]="examInstance.solution"></div>
+			<ul [hidden]="examInstance.solutionlist==null">
+				<li *ngFor="let solution of examInstance.solutionlist">
+					<input type="checkbox" disabled checked="{{solution}}" />
+					<span [mathJax]="solution"></span>
+				</li>
+			</ul>
+			<button (click)="setRandomExam()">Neu starten!</button>
+		</div>
+	</div>
+</div>
