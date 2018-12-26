@@ -32,7 +32,7 @@
 		<div [mathJax]="examInstance.question"></div>
 		<ol [hidden]="examInstance.questionlist==null" class="multipleChoiceList">
 			<li *ngFor="let question of examInstance.questionlist; let i = index">
-				<input *ngIf="examInstance.metainfo.type=='mchoice'" 
+				<input *ngIf="examInstance.metainfo.type=='mchoice'" class="solution-checkbox"
 					type="checkbox" [(ngModel)]="solution[i]" />
 				<span [mathJax]="question"></span>
 			</li>
@@ -57,7 +57,7 @@
 				<span [mathJax]="solution"></span>
 			</li>
 		</ul>
-		<button (click)="setRandomExam()">Restart</button>
+		<button class="btn btn-primary" (click)="setRandomExam()">Restart game</button>
 	</div>
 	<br />
 	<div [hidden]="!isRewardShown" [innerHTML]="rewardsHtmlCode" class="reward"></div>

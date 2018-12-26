@@ -21,6 +21,12 @@
 	color: red;
 }
 
+.solution-checkbox
+{
+	width: 1em;
+	height: 1em;
+}
+
 .reward
 {
 	text-align: center;
