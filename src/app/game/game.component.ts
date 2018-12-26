@@ -79,6 +79,8 @@ export class GameComponent implements OnInit
 	{
 		this.isRewardShown = true;
 		this.rewardsHtmlCode = this.availableRewardsList[this.getRandomNumber(0, this.availableRewardsList.length)];
+		var self = this;
+		setTimeout(function(){ self.isRewardShown = false; }, 3500);
 	}
 	
 	setRandomExam()

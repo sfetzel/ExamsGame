@@ -27,19 +27,16 @@
 			</div>
 		</div>
 	</form>
-	<br />
-	<div [hidden]="!isRewardShown" [innerHTML]="rewardsHtmlCode"></div>
-	<h2>Task</h2>
-	<div [hidden]="examInstance==null" >
+	<div [hidden]="examInstance==null || isSolutionVisible || isRewardShown" >
+		<h2>Task</h2>
 		<div [mathJax]="examInstance.question"></div>
-		<ul [hidden]="examInstance.questionlist==null">
-		
+		<ol [hidden]="examInstance.questionlist==null" class="multipleChoiceList">
 			<li *ngFor="let question of examInstance.questionlist; let i = index">
 				<input *ngIf="examInstance.metainfo.type=='mchoice'" 
 					type="checkbox" [(ngModel)]="solution[i]" />
 				<span [mathJax]="question"></span>
 			</li>
-		</ul>
+		</ol>
 		<div class="input-group mb-3" *ngIf="examInstance != null && examInstance.metainfo.type == 'num'">
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="basic-solution">Your solution</span>
@@ -49,18 +46,20 @@
 				class="form-control" placeholder="1234" aria-label="solution" aria-describedby="basic-solution">
 		</div>
 		<button [attr.disabled]="isSolutionVisible ? 'disabled' : null" (click)="checkExam(examInstance)"
-			class="btn btn-primary">Check</button>
-		<br />
-		<div [hidden]="!isSolutionVisible">
-			<div [mathJax]="examInstance.solution"></div>
-			<ul [hidden]="examInstance.solutionlist==null">
-				<li *ngFor="let solution of examInstance.solutionlist">
-					<input type="checkbox" disabled checked="{{solution}}" />
-					<span [mathJax]="solution"></span>
-				</li>
-			</ul>
-			<button (click)="setRandomExam()">Restart</button>
-		</div>
+			class="btn btn-primary" [@answerState]="isSolutionVisible ? 'incorrectAnswer' : 'noAnswer'">Check</button>
 	</div>
+	<div [hidden]="!isSolutionVisible" class="solution">
+		<h2>Wrong answer :( Correct solution:</h2>
+		<div [mathJax]="examInstance.solution"></div>
+		<ul [hidden]="examInstance.solutionlist==null">
+			<li *ngFor="let solution of examInstance.solutionlist">
+				<input type="checkbox" disabled checked="{{solution}}" />
+				<span [mathJax]="solution"></span>
+			</li>
+		</ul>
+		<button (click)="setRandomExam()">Restart</button>
+	</div>
+	<br />
+	<div [hidden]="!isRewardShown" [innerHTML]="rewardsHtmlCode" class="reward"></div>
 	<br style="clear: both" />
 </div>

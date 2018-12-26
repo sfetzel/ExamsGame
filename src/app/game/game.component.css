@@ -3,8 +3,27 @@
 	margin: 0 auto;
 	width: 80%;
 	background-color: white;
-	height: 100%;
 	padding: 1em;
+}
+
+.multipleChoiceList
+{
+	list-style-type: upper-alpha;
+}
+
+.multipleChoiceList li
+{
+	height: 2.5em;
+}
+
+.solution h2
+{
+	color: red;
+}
+
+.reward
+{
+	text-align: center;
 }
 
 @media only screen and (max-width: 600px)
