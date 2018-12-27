@@ -150,7 +150,7 @@ make_exams_write_arsnova <- function(url = "https://arsnova.eu/api", sessionkey 
       ## collapse question text
       json$question <- paste(exm[[j]]$question, collapse = "\n")
       json$questionlist <- exm[[j]]$questionlist
-      json$solution <- exm[[j]]$solution
+      json$solution <- paste(exm[[j]]$solution, collapse = "\n")
       json$solutionlist <- exm[[j]]$solutionlist
       json$metainfo <- exm[[j]]$metainfo
       json$supplements <- exm[[j]]$supplements
