@@ -20,6 +20,7 @@ export interface ExamInstance
 	solutionlist: string[];
 	subject: string;
 	supplements: string[];
+	solved: boolean;
 }
 
 

@@ -27,7 +27,7 @@
 			</div>
 		</div>
 	</form>
-	<div [hidden]="examInstance==null || isSolutionVisible || isRewardShown" >
+	<div [hidden]="examInstance==null || isRewardShown || isGameFinished" >
 		<h2>Task</h2>
 		<div [mathJax]="examInstance.question"></div>
 		<ol [hidden]="examInstance.questionlist==null" class="multipleChoiceList">
@@ -57,9 +57,13 @@
 				<span [mathJax]="solution"></span>
 			</li>
 		</ul>
-		<button class="btn btn-primary" (click)="setRandomExam()">Restart game</button>
+		<button class="btn btn-primary" (click)="setRandomExam()">Restart level</button>
 	</div>
 	<br />
 	<div [hidden]="!isRewardShown" [innerHTML]="rewardsHtmlCode" class="reward"></div>
+	<div [hidden]="!isGameFinished">
+		<h1>Congratulations! You are a math king!</h1>
+		<img src="assets/finish.jpg" alt="" />
+	</div>
 	<br style="clear: both" />
 </div>

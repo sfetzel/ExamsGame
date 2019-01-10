@@ -38,6 +38,7 @@ export class GameComponent implements OnInit
 	public level = 1;
 	public levelCount = 1;
 	public isSolutionVisible=false;
+	public isGameFinished = false;
 	private levels: ExamInstance[][] = [];
 	public score = 0;
 	
@@ -54,7 +55,8 @@ export class GameComponent implements OnInit
 			solution: "",
 			solutionlist: [],
 			subject: "",
-			supplements: []
+			supplements: [],
+			solved: false
 		};
 	public solution;
 	
@@ -70,9 +72,10 @@ export class GameComponent implements OnInit
 	
 	getRandomExam():ExamInstance
 	{
-		var randomLevel = this.getRandomNumber(0, this.levels.length);
-		var randomExam = this.getRandomNumber(0, this.levels[randomLevel].length);
-		return this.levels[randomLevel][randomExam];
+		//var levelIndex = this.getRandomNumber(0, this.levels.length);
+		var levelIndex = this.level-1;
+		var randomExam = this.getRandomNumber(0, this.levels[levelIndex].length);
+		return this.levels[levelIndex][randomExam];
 	}
 	
 	showReward()
@@ -86,6 +89,11 @@ export class GameComponent implements OnInit
 	setRandomExam()
 	{
 		let exam = this.getRandomExam();
+		
+		// look for exam, which has not already been solved
+		while(exam.hasOwnProperty("solved")) {
+			exam = this.getRandomExam();
+		}
 		this.isSolutionVisible = false;
 		this.solution = "";
 		this.isRewardShown = false;
@@ -145,29 +153,53 @@ export class GameComponent implements OnInit
 		return isAnswerCorrect;
 	}
 	
+	enterLevel()
+	{
+		var self = this;
+		this.examService.getExamsByLevel(this.level).subscribe(
+			level => {
+				self.levels.push(level);
+				self.setRandomExam();
+			});
+	}
+	
 	checkExam(exam:ExamInstance)
 	{
 		let isAnswerCorrect = this.isExamAnswerCorrect(this.examInstance, this.solution);
 		if(!isAnswerCorrect){
 			this.isSolutionVisible = true;
 			this.score = 0;
-			this.level = 1;
 		}
 		else {
 			this.score += 1;
+			this.examInstance.solved = true;
 			this.setRandomExam();
-			this.showReward();
+			if(this.score > 10)
+			{
+				if(this.level < this.levelCount)
+				{
+					this.level += 1;
+					this.score = 0;
+					var self = this;
+					setTimeout(function(){ self.enterLevel() }, 2500);
+					this.showReward();
+				}
+				else
+				{
+					this.isGameFinished = true;
+				}
+			}
+			else
+			{
+				this.showReward();
+			}
 		}
 	}
 	
 	ngOnInit()
 	{
 		var self = this;
-		this.examService.getExamsByLevel(1).subscribe(
-			level => {
-				self.levels = [ level ];
-				self.setRandomExam();
-			});
+		this.enterLevel();
 		this.examService.getRewardsList().subscribe(rewardsList => { 
 			self.availableRewardsList = rewardsList; 
 		});
