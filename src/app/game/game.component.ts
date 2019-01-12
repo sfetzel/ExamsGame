@@ -35,6 +35,8 @@ import { ExamService, ExamInstance } from '../exam.service';
 })
 export class GameComponent implements OnInit
 {
+	public ExamsPerLevel: number = 8;
+	
 	public level = 1;
 	public levelCount = 1;
 	public isSolutionVisible=false;
@@ -59,9 +61,6 @@ export class GameComponent implements OnInit
 			solved: false
 		};
 	public solution;
-	
-	// count of points to enter next level
-	public necessaryPointsForNextLevel = 10;
 	
 	constructor(private examService: ExamService, public highscoreService:HighscoreService) {}
 	
@@ -174,7 +173,7 @@ export class GameComponent implements OnInit
 			this.score += 1;
 			this.examInstance.solved = true;
 			this.setRandomExam();
-			if(this.score > 10)
+			if(this.score >= this.ExamsPerLevel)
 			{
 				if(this.level < this.levelCount)
 				{
