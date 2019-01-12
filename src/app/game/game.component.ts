@@ -63,7 +63,7 @@ export class GameComponent implements OnInit
 	// count of points to enter next level
 	public necessaryPointsForNextLevel = 10;
 	
-	constructor(private examService: ExamService, private highscoreService:HighscoreService) {}
+	constructor(private examService: ExamService, public highscoreService:HighscoreService) {}
 	
 	getRandomNumber(lowerBound, upperBound)
 	{

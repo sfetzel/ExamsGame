@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="welcomeHeader" datatype="html">
+        <source>Welcome to the exams king game!</source>
+        <target>Willkommen beim Aufgabenkönig-Spiel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/name/name.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Welcome header</note>
+      </trans-unit>
+      <trans-unit id="nameCaption" datatype="html">
+        <source>Enter your name</source>
+        <target>Gib deinen Namen ein</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/name/name.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Name enter caption</note>
+      </trans-unit>
+      <trans-unit id="continueBecomeKing" datatype="html">
+        <source>Continue and become king/queen </source>
+        <target>Weiter und werde König/Königin </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/name/name.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="title" datatype="html">
+        <source>exams king</source>
+        <target>Aufgabenkönig</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">exams king</note>
+      </trans-unit>
+      <trans-unit id="points" datatype="html">
+        <source>Points</source>
+        <target>Punkte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="task" datatype="html">
+        <source>Task</source>
+        <target>Aufgabe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="yourSolution" datatype="html">
+        <source>Your solution</source>
+        <target>Deine Lösung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="checkTask" datatype="html">
+        <source>Check</source>
+        <target>Überprüfen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="wrongAnswerTitle" datatype="html">
+        <source>Wrong answer - Correct solution:</source>
+        <target>Falsche Antwort - Richtige Lösung:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="restartLevel" datatype="html">
+        <source>Restart level</source>
+        <target>Level neustarten</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gameFinishedTitle" datatype="html">
+        <source>Congratulations! You are a math king!</source>
+        <target>Glückwunsch! Du bist ein Aufgabenkönig!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/game/game.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

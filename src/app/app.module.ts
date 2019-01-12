@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -26,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ HighscoreService ],
+  providers: [ 
+  	HighscoreService, 
+  	{ provide: LOCALE_ID, useValue: 'de' } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

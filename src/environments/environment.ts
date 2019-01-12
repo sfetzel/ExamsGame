@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  levelCount: 3,
+  levelCount: 7,
   levelsRelativeUrl: "assets/level{0}.json",
 };

@@ -1,8 +1,6 @@
 <div class="GameComponent">
 	<img src="assets/beautiful-royal-crown.png" style="width: 20%; float: right;" alt="" />
-	<h1>
-		exams king
-	</h1>
+	<h1 i18n="exams king@@title">exams king</h1>
 	<br />
 	<form>
 		<div class="form-row align-items-center">
@@ -19,16 +17,16 @@
 				</div>
 			</div>
 			<div class="col-auto">
-				<label  class="sr-only">Points: {{score}}</label>
+				<label  class="sr-only"><ng-container i18n="@@points">Points</ng-container>: {{score}}</label>
 				<div class="form-control mb-2">
-					Points: {{score}}
+					<ng-container i18n="@@points">Points</ng-container>: {{score}}
 					<progress max="{{necessaryPointsForNextLevel}}" value="{{score}}"></progress>
 				</div>
 			</div>
 		</div>
 	</form>
 	<div [hidden]="examInstance==null || isRewardShown || isGameFinished" >
-		<h2>Task</h2>
+		<h2 i18n="@@task">Task</h2>
 		<div [mathJax]="examInstance.question"></div>
 		<ol [hidden]="examInstance.questionlist==null" class="multipleChoiceList">
 			<li *ngFor="let question of examInstance.questionlist; let i = index">
@@ -39,17 +37,18 @@
 		</ol>
 		<div class="input-group mb-3" *ngIf="examInstance != null && examInstance.metainfo.type == 'num'">
 			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-solution">Your solution</span>
+				<span class="input-group-text" id="basic-solution" i18n="@@yourSolution">Your solution</span>
 			</div>
 			<input type="number" [(ngModel)]="solution" [attr.disabled]="isSolutionVisible ? 'disabled' : null" 
 				[@answerState]="isSolutionVisible ? 'incorrectAnswer' : 'noAnswer'"
 				class="form-control" placeholder="1234" aria-label="solution" aria-describedby="basic-solution">
 		</div>
 		<button [attr.disabled]="isSolutionVisible ? 'disabled' : null" (click)="checkExam(examInstance)"
-			class="btn btn-primary" [@answerState]="isSolutionVisible ? 'incorrectAnswer' : 'noAnswer'">Check</button>
+			class="btn btn-primary" [@answerState]="isSolutionVisible ? 'incorrectAnswer' : 'noAnswer'"
+			i18n="@@checkTask">Check</button>
 	</div>
 	<div [hidden]="!isSolutionVisible" class="solution">
-		<h2>Wrong answer :( Correct solution:</h2>
+		<h2 i18n="@@wrongAnswerTitle">Wrong answer - Correct solution:</h2>
 		<div [mathJax]="examInstance.solution"></div>
 		<ul [hidden]="examInstance.solutionlist==null">
 			<li *ngFor="let solution of examInstance.solutionlist">
@@ -57,12 +56,12 @@
 				<span [mathJax]="solution"></span>
 			</li>
 		</ul>
-		<button class="btn btn-primary" (click)="setRandomExam()">Restart level</button>
+		<button class="btn btn-primary" (click)="setRandomExam()" i18n="@@restartLevel">Restart level</button>
 	</div>
 	<br />
 	<div [hidden]="!isRewardShown" [innerHTML]="rewardsHtmlCode" class="reward"></div>
 	<div [hidden]="!isGameFinished">
-		<h1>Congratulations! You are a math king!</h1>
+		<h1 i18n="@@gameFinishedTitle">Congratulations! You are a math king!</h1>
 		<img src="assets/finish.jpg" alt="" />
 	</div>
 	<br style="clear: both" />

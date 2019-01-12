@@ -9,7 +9,7 @@ import { HighscoreService } from '../highscore.service';
 })
 export class NameComponent implements OnInit {
 
-	constructor(private highscoreService:HighscoreService) { }
+	constructor(public highscoreService:HighscoreService) { }
 
 	ngOnInit() {
 	}

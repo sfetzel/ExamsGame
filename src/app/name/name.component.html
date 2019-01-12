@@ -1,14 +1,18 @@
 <div class="NameComponent">
-	<h1>Welcome to the exams king game!</h1>
+	<h1 i18n="Welcome header@@welcomeHeader">Welcome to the exams king game!</h1>
 	<img src="assets/beautiful-royal-crown.png" style="width: 20%" alt="" />
 	<br />
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text" id="name-input-addon">Enter your name</span>
+			<span class="input-group-text" id="name-input-addon" i18n="Name enter caption@@nameCaption">Enter your name</span>
 		</div>
-		<input type="text" class="form-control" placeholder="Elizabeth" [(ngModel)]="this.highscoreService.name"
+		<input type="text" class="form-control" placeholder="" [(ngModel)]="this.highscoreService.name"
 			aria-label="Name" aria-describedby="name-input-addon">
 	</div>
-	<button [disabled]="this.highscoreService.name == '' ? true : false" class="btn btn-primary" routerLink="/game">Continue
-		<span [hidden]="this.highscoreService.name==''"> and become king/queen {{this.highscoreService.name}}</span></button>
+	<button [disabled]="this.highscoreService.name == '' ? true : false" class="btn btn-primary" routerLink="/game">
+		<ng-container i18n="@@continueBecomeKing">Continue and become king/queen </ng-container>
+		<span [hidden]="this.highscoreService.name==''">
+			{{this.highscoreService.name}}
+		</span>
+	</button>
 </div>
